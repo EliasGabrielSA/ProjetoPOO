@@ -1,8 +1,8 @@
+model\dao\DaoFactory.class
+start\projetopadrao2\App.class
+controller\PrincipalController.class
+model\Contato.class
 module-info.class
-model/Contato.class
-start/projetopadrao2/App.class
-model/dao/ConnFactory.class
-model/dao/DaoFactory.class
-model/dao/InterfaceDao.class
-model/dao/ContatoDaoJdbc.class
-controller/PrincipalController.class
+model\dao\ContatoDaoJdbc.class
+model\dao\ConnFactory.class
+model\dao\InterfaceDao.class
