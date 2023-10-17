@@ -1,8 +1,8 @@
+model\Midia.class
 model\dao\DaoFactory.class
 start\projetopadrao2\App.class
 controller\PrincipalController.class
-model\Contato.class
 module-info.class
-model\dao\ContatoDaoJdbc.class
 model\dao\ConnFactory.class
 model\dao\InterfaceDao.class
+model\dao\MidiaDaoJdbc.class

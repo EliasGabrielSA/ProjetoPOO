@@ -45,10 +45,12 @@ public class MidiaDaoJdbc implements InterfaceDao<Midia> {
     public void editar(Midia entidade) throws Exception {
         try {
             PreparedStatement ps = conn.prepareStatement(
-                    "UPDATE Contato SET nome=?, email=?, telefone=? WHERE id=?");
+                    "UPDATE Contato SET nome=?, tipo=?, quantidade_faixa=?, ano_lancamento = ?, duracao_total = ?, WHERE id=?");
             ps.setString(1, entidade.getNome());
-            ps.setString(2, entidade.getEmail());
-            ps.setString(3, entidade.getTelefone());
+            ps.setString(2, entidade.getTipo());
+            ps.setInt(3, entidade.getQuantidade_faixas());
+            ps.setString(2, entidade.getAno_lancamento());
+            ps.setFloat(3, entidade.getDuracao_total());
             ps.setInt(4, entidade.getId());
             ps.execute();
         } finally {
@@ -74,18 +76,20 @@ public class MidiaDaoJdbc implements InterfaceDao<Midia> {
     @Override
     public Midia pesquisarPorId(int id) throws Exception {
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Contato");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Midia");
             ResultSet rs = ps.executeQuery();
             List<Midia> lista = new ArrayList();
             while (rs.next()) {
                 if (rs.getInt("id") == id) {
-                    Midia c = new Midia();
-                    c.setId(rs.getInt("id"));
-                    c.setNome(rs.getString("nome"));
-                    c.setEmail(rs.getString("email"));
-                    c.setTelefone(rs.getString("telefone"));
+                    Midia m = new Midia();
+                    m.setId(rs.getInt("id"));
+                    m.setNome(rs.getString("nome"));
+                    m.setTipo(rs.getString("tipo"));
+                    m.setQuantidade_faixas(rs.getInt("quantidade_faixas"));
+                    m.setAno_lancamento(rs.getString("ano_lancamento"));
+                    m.setDuracao_total(rs.getFloat("duracao_total"));
                     
-                    return c;
+                    return m;
                 }   
             }
         } finally {
@@ -104,12 +108,14 @@ public class MidiaDaoJdbc implements InterfaceDao<Midia> {
             ResultSet rs = ps.executeQuery();
             List<Midia> lista = new ArrayList();
             while (rs.next()) {
-                Midia c = new Midia();
-                c.setId(rs.getInt("id"));
-                c.setNome(rs.getString("nome"));
-                c.setEmail(rs.getString("email"));
-                c.setTelefone(rs.getString("telefone"));
-                lista.add(c);
+                Midia m = new Midia();
+                m.setId(rs.getInt("id"));
+                m.setNome(rs.getString("nome"));
+                m.setTipo(rs.getString("tipo"));
+                m.setQuantidade_faixas(rs.getInt("quantidade_faixas"));
+                m.setAno_lancamento(rs.getString("ano_lancamento"));
+                m.setDuracao_total(rs.getFloat("duracao_total"));
+                lista.add(m);
             }
             return lista;
         } finally {
@@ -118,5 +124,4 @@ public class MidiaDaoJdbc implements InterfaceDao<Midia> {
             }
         }
     }
-
 }
