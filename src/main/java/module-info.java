@@ -1,12 +1,11 @@
-module start.projetopadrao2 {
+module start.colecaojavafx {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.base;
     requires java.sql;
-    
 
-    opens start.projetopadrao2 to javafx.fxml;
-    exports start.projetopadrao2;
+    opens start.colecaojavafx to javafx.fxml;
+    exports start.colecaojavafx;
     
     opens controller to javafx.fxml;
     exports controller;

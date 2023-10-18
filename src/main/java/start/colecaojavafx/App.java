@@ -1,4 +1,4 @@
-package start.projetopadrao2;
+package start.colecaojavafx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

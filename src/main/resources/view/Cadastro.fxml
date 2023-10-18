@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroController">
+   <children>
+      <Pane layoutX="139.0" layoutY="162.0" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #d3d3d3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="btnAdicionar" layoutX="493.0" layoutY="13.0" mnemonicParsing="false" onAction="#btnAdicionarOnAction" text="Adicionar" />
+            <Button fx:id="btnVoltar" layoutX="425.0" layoutY="13.0" mnemonicParsing="false" onAction="#btnVoltarOnAction" text="Voltar" />
+         </children>
+      </Pane>
+      <Label layoutX="41.0" layoutY="38.0" text="Nome do álbum" />
+      <Label layoutX="41.0" layoutY="98.0" text="Tipo (CD/DVD/Vinil...)" />
+      <Label layoutX="41.0" layoutY="158.0" text="Quant. de faixas" />
+      <Label layoutX="41.0" layoutY="218.0" text="Ano de lançamento" />
+      <Label layoutX="41.0" layoutY="278.0" text="Duração (min)" />
+      <TextField fx:id="txtNome" layoutX="41.0" layoutY="63.0" prefHeight="25.0" prefWidth="245.0" />
+      <TextField fx:id="txtTipo" layoutX="41.0" layoutY="123.0" prefHeight="25.0" prefWidth="245.0" />
+      <TextField fx:id="txtQtd" layoutX="41.0" layoutY="183.0" prefHeight="25.0" prefWidth="245.0" />
+      <TextField fx:id="txtAno" layoutX="41.0" layoutY="243.0" prefHeight="25.0" prefWidth="245.0" />
+      <TextField fx:id="txtDuracao" layoutX="41.0" layoutY="303.0" prefHeight="25.0" prefWidth="245.0" />
+      <TextField fx:id="txtUrl" layoutX="361.0" layoutY="303.0" prefHeight="25.0" prefWidth="199.0" promptText="URL da Imagem" />
+      <Pane layoutX="360.0" layoutY="38.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d3d3d3;">
+         <children>
+            <ImageView fx:id="imgCapa" fitHeight="187.0" fitWidth="187.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+         </children></Pane>
+      <Button fx:id="btnProcurar" layoutX="430.0" layoutY="261.0" mnemonicParsing="false" onMouseClicked="#getUrl" text="Procurar" />
+   </children>
+</AnchorPane>

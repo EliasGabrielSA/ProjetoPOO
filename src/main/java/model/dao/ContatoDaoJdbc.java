@@ -72,19 +72,19 @@ public class ContatoDaoJdbc implements InterfaceDao<Contato> {
     @Override
     public Contato pesquisarPorId(int id) throws Exception {
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Contato");
+            this.conn = ConnFactory.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM contato");
             ResultSet rs = ps.executeQuery();
-            List<Contato> lista = new ArrayList();
-            while (rs.next()) {
-                if (rs.getInt("id") == id) {
-                    Contato c = new Contato();
-                    c.setId(rs.getInt("id"));
-                    c.setNome(rs.getString("nome"));
-                    c.setEmail(rs.getString("email"));
-                    c.setTelefone(rs.getString("telefone"));
-                    
-                    return c;
-                }   
+            ArrayList<Contato> lista = new ArrayList<>();
+            if (rs.next()) {
+                Contato c = new Contato();
+                c.setId(rs.getInt("id"));
+                c.setNome(rs.getString("nome"));
+                c.setEmail(rs.getString("email"));
+                c.setTelefone(rs.getString("telefone"));
+                return c;
+            }else{
+                return null;
             }
         } finally {
             if (conn != null) {

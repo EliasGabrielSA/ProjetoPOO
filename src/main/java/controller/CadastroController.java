@@ -12,55 +12,60 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import start.colecaojavafx.App;
 
 /**
  * FXML Controller class
  *
- * @author lab1
+ * @author biels
  */
-public class PrincipalController implements Initializable {
+public class CadastroController implements Initializable {
+    
+    FileChooser fileChooser = new FileChooser();
 
     @FXML
     private Button btnAdicionar;
     @FXML
-    private Button btnRemover;
+    private Button btnVoltar;
     @FXML
-    private Button btnEditar;
+    private TextField txtNome;
     @FXML
-    private Button btnEstatisticas;
+    private TextField txtTipo;
     @FXML
-    private TextField txtFiltro;
+    private TextField txtQtd;
     @FXML
-    private Button btnFiltrar;
+    private TextField txtAno;
+    @FXML
+    private TextField txtDuracao;
+    @FXML
+    private TextField txtUrl;
+    @FXML
+    private ImageView imgCapa;
+    @FXML
+    private Button btnProcurar;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //Implementar File Chooser aqui
     }    
 
     @FXML
-    private void btnAdicionarOnAction(ActionEvent event) throws IOException {
-        App.setRoot("Cadastro");
+    private void btnAdicionarOnAction(ActionEvent event) {
     }
 
     @FXML
-    private void btnRemoverOnAction(ActionEvent event) {
+    private void btnVoltarOnAction(ActionEvent event) throws IOException {
+        App.setRoot("Principal");
     }
 
     @FXML
-    private void btnEditarOnAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void btnEstatisticasOnAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void btnFiltrarOnAction(ActionEvent event) {
+    private void getUrl(MouseEvent event) {
     }
     
 }
