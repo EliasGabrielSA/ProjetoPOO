@@ -4,6 +4,7 @@
  */
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,8 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import start.colecaojavafx.App;
 
@@ -23,8 +24,6 @@ import start.colecaojavafx.App;
  * @author biels
  */
 public class CadastroController implements Initializable {
-    
-    FileChooser fileChooser = new FileChooser();
 
     @FXML
     private Button btnAdicionar;
@@ -52,7 +51,7 @@ public class CadastroController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Implementar File Chooser aqui
+        
     }    
 
     @FXML
@@ -65,7 +64,20 @@ public class CadastroController implements Initializable {
     }
 
     @FXML
-    private void getUrl(MouseEvent event) {
-    }
-    
+    private void btnProcurarOnAction(ActionEvent event) {
+        System.out.println("printou");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Selecione uma imagem");
+        fileChooser.setInitialDirectory(new File("C:\\"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPEG (*.jpeg)", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG (*.png)", "*png"), new FileChooser.ExtensionFilter("All images", "*jpg","*.png"));
+        File selectedFile = fileChooser.showOpenDialog(btnProcurar.getScene().getWindow());
+        if(selectedFile != null){
+            txtUrl.setText(selectedFile.getAbsolutePath());
+            Image image = new Image(selectedFile.toURI().toString());
+            imgCapa.setImage(image);
+        }else{
+            System.out.println("Nenhum arquivo foi selecionado");
+        }
+    }   
 }

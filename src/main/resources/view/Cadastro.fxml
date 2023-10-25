@@ -25,11 +25,11 @@
       <TextField fx:id="txtQtd" layoutX="41.0" layoutY="183.0" prefHeight="25.0" prefWidth="245.0" />
       <TextField fx:id="txtAno" layoutX="41.0" layoutY="243.0" prefHeight="25.0" prefWidth="245.0" />
       <TextField fx:id="txtDuracao" layoutX="41.0" layoutY="303.0" prefHeight="25.0" prefWidth="245.0" />
-      <TextField fx:id="txtUrl" layoutX="361.0" layoutY="303.0" prefHeight="25.0" prefWidth="199.0" promptText="URL da Imagem" />
+      <TextField fx:id="txtUrl" editable="false" layoutX="361.0" layoutY="303.0" prefHeight="25.0" prefWidth="199.0" promptText="URL da Imagem" />
       <Pane layoutX="360.0" layoutY="38.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d3d3d3;">
          <children>
             <ImageView fx:id="imgCapa" fitHeight="187.0" fitWidth="187.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
          </children></Pane>
-      <Button fx:id="btnProcurar" layoutX="430.0" layoutY="261.0" mnemonicParsing="false" onMouseClicked="#getUrl" text="Procurar" />
+      <Button fx:id="btnProcurar" layoutX="430.0" layoutY="261.0" mnemonicParsing="false" onAction="#btnProcurarOnAction" text="Procurar" />
    </children>
 </AnchorPane>
