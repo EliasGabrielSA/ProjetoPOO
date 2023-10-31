@@ -54,10 +54,11 @@
                </font></Button>
          </children>
       </Pane>
-      <TableView layoutY="84.0" prefHeight="516.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="381.0" AnchorPane.topAnchor="84.0">
+      <TableView layoutY="84.0" prefHeight="516.0" prefWidth="602.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="422.0" AnchorPane.topAnchor="84.0">
         <columns>
-          <TableColumn prefWidth="257.0" text="Nome do Disco" />
-          <TableColumn minWidth="0.0" prefWidth="167.0" text="Visualizado" />
+          <TableColumn prefWidth="300.0" text="Nome do Disco" />
+          <TableColumn minWidth="0.0" prefWidth="150.0" text="Visualizado" />
+            <TableColumn minWidth="150.0" prefWidth="75.0" text="Tipo" />
         </columns>
       </TableView>
    </children>
