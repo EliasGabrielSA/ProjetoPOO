@@ -36,7 +36,8 @@ public class PrincipalController {
     }
 
     @FXML
-    private void btnEditarOnAction(ActionEvent event) {
+    private void btnEditarOnAction(ActionEvent event) throws IOException {
+        App.setRoot("Editar");
     }
 
     @FXML

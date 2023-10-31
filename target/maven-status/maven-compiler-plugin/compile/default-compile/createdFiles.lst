@@ -1,9 +1,10 @@
-model\dao\DaoFactory.class
 start\colecaojavafx\App.class
 controller\PrincipalController.class
 model\Contato.class
-module-info.class
 controller\CadastroController.class
 model\dao\ContatoDaoJdbc.class
 model\dao\ConnFactory.class
+controller\EditarController.class
+model\dao\DaoFactory.class
+module-info.class
 model\dao\InterfaceDao.class
