@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class ConnFactory {
     
     public static Connection getConnection() throws SQLException {
-      Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/colecao", "root", "");
+      Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/agenda", "root", "");
       return conn;
     }
     
