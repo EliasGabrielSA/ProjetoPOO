@@ -10,8 +10,8 @@ package model.dao;
  */
 public class DaoFactory {
 
-    public static ContatoDaoJdbc novoContatoDao() throws Exception {
-        return new ContatoDaoJdbc();
+    public static DiscoDaoJdbc novoDiscoDao() throws Exception {
+        return new DiscoDaoJdbc();
     }
 
 }

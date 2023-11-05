@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 start\colecaojavafx\App.class
 controller\PrincipalController.class
 model\Contato.class
+=======
+model\dao\DaoFactory.class
+model\Disco.class
+start\colecaojavafx\App.class
+controller\PrincipalController.class
+module-info.class
+>>>>>>> a5fa0a5 (Mudanças nos arquivos do BD)
 controller\CadastroController.class
-model\dao\ContatoDaoJdbc.class
 model\dao\ConnFactory.class
 controller\EditarController.class
 model\dao\DaoFactory.class
