@@ -3,8 +3,8 @@ start\colecaojavafx\App.class
 controller\PrincipalController.class
 controller\CadastroController.class
 model\dao\ConnFactory.class
-controller\EditarController.class
 model\dao\DaoFactory.class
 module-info.class
 model\dao\DiscoDaoJdbc.class
 model\dao\InterfaceDao.class
+controller\EstatisticasController.class

@@ -27,13 +27,13 @@ public class DiscoDaoJdbc implements InterfaceDao<Disco> {
     public void incluir(Disco entidade) throws Exception {
         try {
             PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO colecao (nome, ano, tipo, duracao, faixas, visualizou, imagem) VALUES(?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO discos (nome, ano, tipo, duracao, faixas, visualizou, imagem) VALUES(?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, entidade.getNome());
             ps.setInt(2, entidade.getAno());
             ps.setString(3, entidade.getTipo());
             ps.setInt(4, entidade.getDuracao());
             ps.setInt(5, entidade.getFaixas());
-            ps.setBoolean(6, entidade.isVisualizou());
+            ps.setString(6, entidade.getVisualizou());
             ps.setString(7, entidade.getImagem());
             ps.execute();
         } finally {
@@ -47,13 +47,13 @@ public class DiscoDaoJdbc implements InterfaceDao<Disco> {
     public void editar(Disco entidade) throws Exception {
         try {
             PreparedStatement ps = conn.prepareStatement(
-                    "UPDATE colecao SET nome=?, ano=?, tipo=?, duracao=?, faixas=?, visualizou=?, imagem=? WHERE id=?");
+                    "UPDATE discos SET nome=?, ano=?, tipo=?, duracao=?, faixas=?, visualizou=?, imagem=? WHERE id=?");
             ps.setString(1, entidade.getNome());
             ps.setInt(2, entidade.getAno());
             ps.setString(3, entidade.getTipo());
             ps.setInt(4, entidade.getDuracao());
             ps.setInt(5, entidade.getFaixas());
-            ps.setBoolean(6, entidade.isVisualizou());
+            ps.setString(6, entidade.getVisualizou());
             ps.setString(7, entidade.getImagem());
             ps.setInt(8, entidade.getId());
             ps.execute();
@@ -67,7 +67,7 @@ public class DiscoDaoJdbc implements InterfaceDao<Disco> {
     @Override
     public void excluir(Disco entidade) throws Exception {
         try {
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM colecao WHERE id=?");
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM discos WHERE id=?");
             ps.setInt(1, entidade.getId());
             ps.execute();
         } finally {
@@ -81,7 +81,7 @@ public class DiscoDaoJdbc implements InterfaceDao<Disco> {
     public Disco pesquisarPorNome(String nome) throws Exception {
         try {
             this.conn = ConnFactory.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM colecao WHERE nome = ?");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM discos WHERE nome = ?");
             ps.setString(1, nome);
             ResultSet rs = ps.executeQuery();
 
@@ -93,7 +93,7 @@ public class DiscoDaoJdbc implements InterfaceDao<Disco> {
                 c.setTipo(rs.getString("tipo"));
                 c.setDuracao(rs.getInt("duracao"));
                 c.setFaixas(rs.getInt("faixas"));
-                c.setVisualizou(rs.getBoolean("visualizou"));
+                c.setVisualizou(rs.getString("visualizou"));
                 c.setImagem(rs.getString("imagem"));
                 return c;
             } else {
@@ -107,10 +107,16 @@ public class DiscoDaoJdbc implements InterfaceDao<Disco> {
     }
 
     @Override
-    public List<Disco> listar() throws Exception {
+    public List<Disco> listar(String param) throws Exception {
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM colecao");
-            ResultSet rs = ps.executeQuery();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            if(param.equals("")){
+                ps = conn.prepareStatement("SELECT * FROM discos");
+            } else{
+                ps = conn.prepareStatement("SELECT * FROM discos WHERE nome like '%" + param + "%'");
+            }
+            rs = ps.executeQuery();
             List<Disco> lista = new ArrayList();
             while (rs.next()) {
                 Disco c = new Disco();
@@ -120,7 +126,7 @@ public class DiscoDaoJdbc implements InterfaceDao<Disco> {
                 c.setTipo(rs.getString("tipo"));
                 c.setDuracao(rs.getInt("duracao"));
                 c.setFaixas(rs.getInt("faixas"));
-                c.setVisualizou(rs.getBoolean("visualizou"));
+                c.setVisualizou(rs.getString("visualizou"));
                 c.setImagem(rs.getString("imagem"));
                 lista.add(c);
             }

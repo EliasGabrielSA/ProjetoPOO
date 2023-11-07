@@ -16,14 +16,14 @@ public class Disco {
     private String tipo;
     private int duracao;
     private int faixas;
-    private boolean visualizou;
+    private String visualizou;
     private String imagem;
     
     public Disco(){
         
     }
 
-    public Disco(String nome, int ano, String tipo, int duracao, int faixas, boolean visualizou, String imagem) {
+    public Disco(String nome, int ano, String tipo, int duracao, int faixas, String visualizou, String imagem) {
         this.nome = nome;
         this.ano = ano;
         this.tipo = tipo;
@@ -81,11 +81,11 @@ public class Disco {
         this.faixas = faixas;
     }
 
-    public boolean isVisualizou() {
+    public String getVisualizou() {
         return visualizou;
     }
 
-    public void setVisualizou(boolean visualizou) {
+    public void setVisualizou(String visualizou) {
         this.visualizou = visualizou;
     }
 

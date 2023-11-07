@@ -20,6 +20,6 @@ public interface InterfaceDao<T> {
 
     public abstract T pesquisarPorNome(String nome) throws Exception;
 
-    public abstract List<T> listar() throws Exception;
+    public abstract List<T> listar(String param) throws Exception;
     
 }
