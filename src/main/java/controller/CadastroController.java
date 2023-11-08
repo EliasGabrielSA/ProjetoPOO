@@ -78,6 +78,11 @@ public class CadastroController implements Initializable {
                 Image image = new Image("file:///" + txtUrl.getText().replace("\\", "/"));
                 imgCapa.setImage(image);
             }
+            
+            btnAdicionar.setText("Editar");
+            
+        } else{
+            limparDados();
         }
     }    
 
@@ -107,11 +112,13 @@ public class CadastroController implements Initializable {
         }
         
         App.setRoot("Principal");
+        limparDados();
     }
 
     @FXML
-    private void btnVoltarOnAction(ActionEvent event) throws IOException {
+    private void btnVoltarOnAction(ActionEvent event) throws Exception {
         App.setRoot("Principal");
+        limparDados();
     }
 
     @FXML
@@ -129,6 +136,18 @@ public class CadastroController implements Initializable {
         }else{
             System.out.println("Nenhum arquivo foi selecionado");
         }
+    }
+    
+    private void limparDados(){
+        discoSelecionado = null;
+        txtNome.setText("");
+        txtTipo.setText("");
+        txtQtd.setText("");
+        txtAno.setText("");
+        txtDuracao.setText("");
+        txtUrl.setText("");
+        checkBoxOuviu.setSelected(false);
+        btnAdicionar.setText("Adicionar");
     }
     
     public static Disco getDiscoSelecionado() {

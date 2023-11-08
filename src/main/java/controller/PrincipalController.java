@@ -13,9 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -59,9 +57,6 @@ public class PrincipalController implements Initializable {
     @FXML
     private TextField txtFiltro;
     
-    @FXML
-    private EstatisticasController estatisticasController;
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -82,6 +77,12 @@ public class PrincipalController implements Initializable {
         if(discoSelecionado != null){
             CadastroController.setDiscoSelecionado(discoSelecionado);
             App.setRoot("Cadastro");
+        } else{
+            Alert alert = new Alert(AlertType.INFORMATION); 
+            alert.setTitle("Erro");
+            alert.setHeaderText("");
+            alert.setContentText("Selecione um item para editar.");
+            alert.show();
         }
         
         carregarDisco("");
@@ -106,21 +107,26 @@ public class PrincipalController implements Initializable {
             }else{
                 alert.close();
             }
+        } else{
+            Alert alert = new Alert(AlertType.INFORMATION); 
+            alert.setTitle("Erro");
+            alert.setHeaderText("");
+            alert.setContentText("Selecione um item para excluir.");
+            alert.show();
         }
     }
     
     //FAZER
     @FXML
     private void btnEstatisticasOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Estatisticas.fxml"));
-        Parent telaEstatisticas = loader.load();
-
-        estatisticasController = loader.getController();
-        if (observableListDisco != null && !observableListDisco.isEmpty()) {
-            estatisticasController.setLista(observableListDisco);
+        if(listaDisco != null && !listaDisco.isEmpty()){
             App.setRoot("Estatisticas");
-        } else {
-            System.out.println("A lista de discos está vazia ou nula.");
+        } else{
+            Alert alert = new Alert(AlertType.INFORMATION); 
+            alert.setTitle("Erro");
+            alert.setHeaderText("");
+            alert.setContentText("A lista de discos está vazia.");
+            alert.show();
         }
     }
 

@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -12,13 +13,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import model.Disco;
+import model.dao.DaoFactory;
+import model.dao.DiscoDaoJdbc;
 import start.colecaojavafx.App;
 
 public class EstatisticasController implements Initializable {
     
     private int contsim;
     private int contnao;
-    private ObservableList<Disco> lista;
+    private List<Disco> listaDisco;
 
     @FXML
     private PieChart estOuviu;
@@ -27,8 +30,9 @@ public class EstatisticasController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Inicialização do gráfico
-        contaEstatistica();
+        estOuviu.getData().clear(); // Limpe os dados antigos
+        
+        carregarLista("");
     }
 
     @FXML
@@ -36,34 +40,30 @@ public class EstatisticasController implements Initializable {
         App.setRoot("Principal");
     }
     
-    public void setLista(ObservableList<Disco> lista){
-        this.lista = lista;
-    }
-
-    public void contaEstatistica() {
-        contsim = 0;
-        contnao = 0;
-        
-        for (int i = 0; i < lista.size(); i++) {
-            if ("Já ouviu".equals(lista.get(i).getVisualizou())) {
-                contsim++;
-            } else{
-                contnao++;
-            }
+    private void carregarLista(String param){
+        try{
+            DiscoDaoJdbc dao = DaoFactory.novoDiscoDao();
+            listaDisco = dao.listar(param);
+        } catch (Exception e){
+            e.printStackTrace();
         }
         
         atualizarGrafico();
     }
 
     private void atualizarGrafico() {
-        estOuviu.getData().clear(); // Limpe os dados antigos
         
-        int teste1 = contsim;
-        int teste2 = contnao;
+        for (int i = 0; i < listaDisco.size(); i++) {
+            if ("Já ouviu".equals(listaDisco.get(i).getVisualizou())) {
+                contsim++;
+            } else{
+                contnao++;
+            }
+        }
         
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-            new PieChart.Data("Já ouviu", teste1),
-            new PieChart.Data("Não ouviu", teste2)
+            new PieChart.Data("Já ouviu", contsim),
+            new PieChart.Data("Não ouviu", contnao)
         );
         
         pieChartData.forEach(data ->
@@ -73,5 +73,5 @@ public class EstatisticasController implements Initializable {
         );
 
         estOuviu.setData(pieChartData);
-    }       
+    }
 }
