@@ -18,10 +18,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Disco;
 import model.dao.DaoFactory;
 import model.dao.DiscoDaoJdbc;
@@ -53,15 +56,44 @@ public class PrincipalController implements Initializable {
     private TableColumn<Disco, String> tblColTipo;
     
     private List<Disco> listaDisco;
+    
     private ObservableList<Disco> observableListDisco;
     @FXML
     private TextField txtFiltro;
     
+    @FXML
+    private ImageView ImageViewModal;
+    
+    @FXML
+    private Label labelNome;
+    
+    @FXML
+    private Label labelAno;
+    
+    @FXML
+    private Label labelTipo;
+    
+    @FXML
+    private Label labelVisualizado;
+    
+    @FXML
+    private Label labelDuracao;
+    
+    @FXML
+    private Label labelQuantidadeFaixas;
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        carregarDisco("");
-    }    
+    tblDiscos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        if (newSelection != null) {
+            modalOnAction(null, newSelection);
+        }
+    });
+
+    carregarDisco("");
+}   
 
     @FXML
     private void btnAdicionarOnAction(ActionEvent event) throws IOException {
@@ -91,6 +123,7 @@ public class PrincipalController implements Initializable {
     @FXML
     private void btnExcluirOnAction(ActionEvent event) throws Exception {
         Disco discoSelecionado = tblDiscos.selectionModelProperty().getValue().getSelectedItem();
+        
         
         if(discoSelecionado != null){
             Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -151,6 +184,21 @@ public class PrincipalController implements Initializable {
         tblDiscos.setItems(observableListDisco);
     }
 
+    @FXML
+    private void modalOnAction(ActionEvent event, Disco discoSelecionado) {
+        if (discoSelecionado != null) {
+            Image image = new Image("file:///" + discoSelecionado.getImagem().replace("\\", "/"));
+            ImageViewModal.setImage(image);
+            labelNome.setText(discoSelecionado.getNome());
+            labelAno.setText("Ano: " + discoSelecionado.getAno());
+            labelTipo.setText("Tipo: " + discoSelecionado.getTipo());
+            labelVisualizado.setText("Visualizado: " + discoSelecionado.getVisualizou());
+            labelDuracao.setText("Duração: " + discoSelecionado.getDuracao());
+            labelQuantidadeFaixas.setText("Quantidade de Faixas: " + discoSelecionado.getFaixas());
+        }
+    }
+
+    
     public List<Disco> getListaDisco() {
         return listaDisco;
     }

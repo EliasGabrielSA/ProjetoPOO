@@ -138,4 +138,9 @@ public class DiscoDaoJdbc implements InterfaceDao<Disco> {
         }
     }
 
+    @Override
+    public void discoSelecionado(Disco disco) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
