@@ -85,9 +85,9 @@ public class PrincipalController implements Initializable {
     
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {        
         tblDiscos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-                modalOnAction(null, newSelection);
+            modalOnAction(null, newSelection);
         });
 
         carregarDisco("");
@@ -183,35 +183,19 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void modalOnAction(ActionEvent event, Disco discoSelecionado) {
-        if (discoSelecionado != null) {
-            System.out.println("feijao");
-            // Caminho da imagem do disco selecionado
-            String caminhoImagem = discoSelecionado.getImagem().replace("\\", "/");
-            Image image = new Image("file:///" + caminhoImagem);
-            ImageViewModal.setImage(image);
+        System.out.println("feijao");
+        // Caminho da imagem do disco selecionado
+        String caminhoImagem = discoSelecionado.getImagem().replace("\\", "/");
+        Image image = new Image("file:///" + caminhoImagem);
+        ImageViewModal.setImage(image);
 
-            // Atualização dos labels
-            labelNome.setText(discoSelecionado.getNome());
-            labelAno.setText("Ano: " + discoSelecionado.getAno());
-            labelTipo.setText("Tipo: " + discoSelecionado.getTipo());
-            labelVisualizado.setText("Visualizado: " + discoSelecionado.getVisualizou());
-            labelDuracao.setText("Duração: " + discoSelecionado.getDuracao());
-            labelQuantidadeFaixas.setText("Quantidade de Faixas: " + discoSelecionado.getFaixas());
-        } else {
-            System.out.println("arroz");
-            // Caminho padrão para a imagem quando não há disco selecionado ou o caminho da imagem é nulo/vazio
-            String caminhoImagemPadrao = "/disco-default-image.avif";
-            Image image = new Image(getClass().getResourceAsStream(caminhoImagemPadrao));
-            ImageViewModal.setImage(image);
-
-            // Limpar os labels
-            labelNome.setText("Nome: N/A");
-            labelAno.setText("Ano: N/A");
-            labelTipo.setText("Tipo: N/A");
-            labelVisualizado.setText("Visualizado: N/A");
-            labelDuracao.setText("Duração: N/A");
-            labelQuantidadeFaixas.setText("Quantidade de Faixas: N/A");
-        }
+        // Atualização dos labels
+        labelNome.setText(discoSelecionado.getNome());
+        labelAno.setText("Ano: " + discoSelecionado.getAno());
+        labelTipo.setText("Tipo: " + discoSelecionado.getTipo());
+        labelVisualizado.setText("Visualizado: " + discoSelecionado.getVisualizou());
+        labelDuracao.setText("Duração: " + discoSelecionado.getDuracao());
+        labelQuantidadeFaixas.setText("Quantidade de Faixas: " + discoSelecionado.getFaixas());
     }
 
     
