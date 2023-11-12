@@ -87,12 +87,7 @@ public class PrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tblDiscos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (obs == null) {
                 modalOnAction(null, newSelection);
-            } else {
-                // Se não houver seleção, chame modalOnAction com null para limpar a interface
-                modalOnAction(null, null);
-            }
         });
 
         carregarDisco("");
