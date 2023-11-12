@@ -11,16 +11,19 @@
 <AnchorPane id="AnchorPane" prefHeight="600" prefWidth="1024" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EstatisticasController">
    <children>
       <PieChart fx:id="estOuviu" layoutX="213.0" layoutY="86.0" prefHeight="428.0" prefWidth="599.0" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="86.0" />
-      <Pane layoutY="550.0" prefHeight="50.0" prefWidth="1024.0" style="-fx-background-color: #cdcdcd;">
+      <Pane layoutY="539.0" prefHeight="61.0" prefWidth="1024.0" style="-fx-background-color: #cdcdcd;">
          <children>
-            <Button fx:id="btnVoltar" layoutX="946.0" layoutY="13.0" mnemonicParsing="false" onAction="#onActionVoltar" text="Voltar">
+            <Button fx:id="btnVoltar" layoutX="900.0" layoutY="13.0" mnemonicParsing="false" onAction="#onActionVoltar" prefHeight="34.0" prefWidth="81.0" style="-fx-background-radius: 10;" text="Voltar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <font>
+                  <Font size="16.0" />
+               </font>
             </Button>
          </children>
       </Pane>
-      <Label layoutX="392.0" layoutY="29.0" text="Estatisticas de consumo">
+      <Label layoutX="392.0" layoutY="29.0" text="Estatisticas de consumo" textAlignment="CENTER">
          <font>
             <Font size="23.0" />
          </font>

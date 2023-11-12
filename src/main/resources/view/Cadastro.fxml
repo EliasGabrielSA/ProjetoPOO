@@ -12,8 +12,8 @@
    <children>
       <Pane layoutX="139.0" layoutY="162.0" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #d3d3d3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="btnAdicionar" layoutX="927.0" layoutY="13.0" mnemonicParsing="false" onAction="#btnAdicionarOnAction" text="Adicionar" />
-            <Button fx:id="btnVoltar" layoutX="864.0" layoutY="13.0" mnemonicParsing="false" onAction="#btnVoltarOnAction" text="Voltar" />
+            <Button fx:id="btnAdicionar" layoutX="927.0" layoutY="13.0" mnemonicParsing="false" onAction="#btnAdicionarOnAction" style="-fx-background-radius: 5;" text="Adicionar" />
+            <Button fx:id="btnVoltar" layoutX="864.0" layoutY="13.0" mnemonicParsing="false" onAction="#btnVoltarOnAction" style="-fx-background-radius: 5;" text="Voltar" />
          </children>
       </Pane>
       <Label layoutX="109.0" layoutY="118.0" text="Nome do álbum" />

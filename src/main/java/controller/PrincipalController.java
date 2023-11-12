@@ -85,7 +85,7 @@ public class PrincipalController implements Initializable {
     
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {        
+    public void initialize(URL url, ResourceBundle rb) {
         tblDiscos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             modalOnAction(null, newSelection);
         });
@@ -183,19 +183,18 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void modalOnAction(ActionEvent event, Disco discoSelecionado) {
-        System.out.println("feijao");
-        // Caminho da imagem do disco selecionado
-        String caminhoImagem = discoSelecionado.getImagem().replace("\\", "/");
-        Image image = new Image("file:///" + caminhoImagem);
-        ImageViewModal.setImage(image);
+            // Caminho da imagem do disco selecionado
+            String caminhoImagem = discoSelecionado.getImagem().replace("\\", "/");
+            Image image = new Image("file:///" + caminhoImagem);
+            ImageViewModal.setImage(image);
 
-        // Atualização dos labels
-        labelNome.setText(discoSelecionado.getNome());
-        labelAno.setText("Ano: " + discoSelecionado.getAno());
-        labelTipo.setText("Tipo: " + discoSelecionado.getTipo());
-        labelVisualizado.setText("Visualizado: " + discoSelecionado.getVisualizou());
-        labelDuracao.setText("Duração: " + discoSelecionado.getDuracao());
-        labelQuantidadeFaixas.setText("Quantidade de Faixas: " + discoSelecionado.getFaixas());
+            // Atualização dos labels
+            labelNome.setText(discoSelecionado.getNome());
+            labelAno.setText("Ano: " + discoSelecionado.getAno());
+            labelTipo.setText("Tipo: " + discoSelecionado.getTipo());
+            labelVisualizado.setText("Visualizado: " + discoSelecionado.getVisualizou());
+            labelDuracao.setText("Duração: " + discoSelecionado.getDuracao());
+            labelQuantidadeFaixas.setText("Quantidade de Faixas: " + discoSelecionado.getFaixas());
     }
 
     
