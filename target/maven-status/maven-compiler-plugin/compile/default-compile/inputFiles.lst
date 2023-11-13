@@ -1,10 +1,10 @@
-C:\Users\ellia\OneDrive\Área de Trabalho\Estudos\ProjetoPOO\src\main\java\model\dao\ConnFactory.java
-C:\Users\ellia\OneDrive\Área de Trabalho\Estudos\ProjetoPOO\src\main\java\module-info.java
-C:\Users\ellia\OneDrive\Área de Trabalho\Estudos\ProjetoPOO\src\main\java\model\dao\DaoFactory.java
-C:\Users\ellia\OneDrive\Área de Trabalho\Estudos\ProjetoPOO\src\main\java\model\Disco.java
-C:\Users\ellia\OneDrive\Área de Trabalho\Estudos\ProjetoPOO\src\main\java\controller\CadastroController.java
-C:\Users\ellia\OneDrive\Área de Trabalho\Estudos\ProjetoPOO\src\main\java\start\colecaojavafx\App.java
-C:\Users\ellia\OneDrive\Área de Trabalho\Estudos\ProjetoPOO\src\main\java\controller\PrincipalController.java
-C:\Users\ellia\OneDrive\Área de Trabalho\Estudos\ProjetoPOO\src\main\java\model\dao\DiscoDaoJdbc.java
-C:\Users\ellia\OneDrive\Área de Trabalho\Estudos\ProjetoPOO\src\main\java\model\dao\InterfaceDao.java
-C:\Users\ellia\OneDrive\Área de Trabalho\Estudos\ProjetoPOO\src\main\java\controller\EstatisticasController.java
+D:\User\Documents\ColecaoPOO\src\main\java\model\dao\ConnFactory.java
+D:\User\Documents\ColecaoPOO\src\main\java\controller\PrincipalController.java
+D:\User\Documents\ColecaoPOO\src\main\java\controller\EstatisticasController.java
+D:\User\Documents\ColecaoPOO\src\main\java\module-info.java
+D:\User\Documents\ColecaoPOO\src\main\java\model\dao\DaoFactory.java
+D:\User\Documents\ColecaoPOO\src\main\java\controller\CadastroController.java
+D:\User\Documents\ColecaoPOO\src\main\java\model\Disco.java
+D:\User\Documents\ColecaoPOO\src\main\java\model\dao\DiscoDaoJdbc.java
+D:\User\Documents\ColecaoPOO\src\main\java\model\dao\InterfaceDao.java
+D:\User\Documents\ColecaoPOO\src\main\java\start\colecaojavafx\App.java

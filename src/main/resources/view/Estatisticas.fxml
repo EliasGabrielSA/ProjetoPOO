@@ -10,8 +10,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600" prefWidth="1024" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EstatisticasController">
    <children>
-      <PieChart fx:id="estOuviu" layoutX="213.0" layoutY="86.0" prefHeight="428.0" prefWidth="599.0" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="86.0" />
-      <Pane layoutY="539.0" prefHeight="61.0" prefWidth="1024.0" style="-fx-background-color: #cdcdcd;">
+      <PieChart fx:id="estOuviu" layoutX="74.0" layoutY="106.0" prefHeight="388.0" prefWidth="412.0" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="87.0" AnchorPane.rightAnchor="525.0" AnchorPane.topAnchor="106.0" />
+      <PieChart fx:id="estTipo" layoutX="525.0" layoutY="106.0" prefHeight="388.0" prefWidth="412.0" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="525.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="106.0" />
+      <Pane layoutY="539.0" prefHeight="61.0" prefWidth="1024.0" style="-fx-background-color: #cdcdcd;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="539.0">
          <children>
             <Button fx:id="btnVoltar" layoutX="900.0" layoutY="13.0" mnemonicParsing="false" onAction="#onActionVoltar" prefHeight="34.0" prefWidth="81.0" style="-fx-background-radius: 10;" text="Voltar">
                <cursor>
@@ -23,7 +24,7 @@
             </Button>
          </children>
       </Pane>
-      <Label layoutX="392.0" layoutY="29.0" text="Estatisticas de consumo" textAlignment="CENTER">
+      <Label layoutX="392.0" layoutY="29.0" text="Estatisticas dos Discos" textAlignment="CENTER">
          <font>
             <Font size="23.0" />
          </font>

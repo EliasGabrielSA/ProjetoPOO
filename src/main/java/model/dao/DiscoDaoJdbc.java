@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.dao;
 
 import java.sql.Connection;
@@ -11,10 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Disco;
 
-/**
- *
- * @author lefoly
- */
 public class DiscoDaoJdbc implements InterfaceDao<Disco> {
 
     private Connection conn;
@@ -140,7 +132,6 @@ public class DiscoDaoJdbc implements InterfaceDao<Disco> {
 
     @Override
     public void discoSelecionado(Disco disco) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }

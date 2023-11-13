@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
 import java.io.IOException;
@@ -30,10 +26,6 @@ import model.dao.DaoFactory;
 import model.dao.DiscoDaoJdbc;
 import start.colecaojavafx.App;
 
-/**
- *
- * @author biels
- */
 public class PrincipalController implements Initializable {
 
     @FXML
@@ -82,8 +74,6 @@ public class PrincipalController implements Initializable {
     @FXML
     private Label labelQuantidadeFaixas;
     
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tblDiscos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -98,8 +88,6 @@ public class PrincipalController implements Initializable {
         App.setRoot("Cadastro");
     }
 
-    //VERIFICAR
-    
     @FXML
     private void btnEditarOnAction(ActionEvent event) throws IOException {
         Disco discoSelecionado = tblDiscos.selectionModelProperty().getValue().getSelectedItem();
@@ -146,7 +134,6 @@ public class PrincipalController implements Initializable {
         }
     }
     
-    //FAZER
     @FXML
     private void btnEstatisticasOnAction(ActionEvent event) throws IOException {
         if(listaDisco != null && !listaDisco.isEmpty()){
@@ -183,26 +170,20 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void modalOnAction(ActionEvent event, Disco discoSelecionado) {
-            // Caminho da imagem do disco selecionado
+        // Caminho da imagem do disco selecionado
+        if (discoSelecionado != null){
             String caminhoImagem = discoSelecionado.getImagem().replace("\\", "/");
             Image image = new Image("file:///" + caminhoImagem);
             ImageViewModal.setImage(image);
+
 
             // Atualização dos labels
             labelNome.setText(discoSelecionado.getNome());
             labelAno.setText("Ano: " + discoSelecionado.getAno());
             labelTipo.setText("Tipo: " + discoSelecionado.getTipo());
-            labelVisualizado.setText("Visualizado: " + discoSelecionado.getVisualizou());
+            labelVisualizado.setText("Status: " + discoSelecionado.getVisualizou());
             labelDuracao.setText("Duração: " + discoSelecionado.getDuracao());
-            labelQuantidadeFaixas.setText("Quantidade de Faixas: " + discoSelecionado.getFaixas());
-    }
-
-    
-    public List<Disco> getListaDisco() {
-        return listaDisco;
-    }
-
-    public ObservableList<Disco> getObservableListDisco() {
-        return observableListDisco;
+            labelQuantidadeFaixas.setText("Faixas: " + discoSelecionado.getFaixas());
+        }
     }
 }

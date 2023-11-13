@@ -21,16 +21,23 @@ public class EstatisticasController implements Initializable {
     
     private int contsim;
     private int contnao;
+    private int contcd;
+    private int contdvd;
+    private int contvinil;
+    private int contoutros;
     private List<Disco> listaDisco;
 
     @FXML
     private PieChart estOuviu;
     @FXML
     private Button btnVoltar;
+    @FXML
+    private PieChart estTipo;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         estOuviu.getData().clear(); // Limpe os dados antigos
+        estTipo.getData().clear();
         
         carregarLista("");
     }
@@ -61,17 +68,50 @@ public class EstatisticasController implements Initializable {
             }
         }
         
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+        for (int i = 0; i < listaDisco.size(); i++) {
+            if ("DVD".equals(listaDisco.get(i).getTipo())) {
+                contdvd++;
+            } 
+            else if ("CD".equals(listaDisco.get(i).getTipo())){
+                contcd++;
+            }
+            else if("VINIL".equals(listaDisco.get(i).getTipo())){
+                contvinil++;
+            }
+            else{
+                contoutros++;
+            }
+        }
+        
+        
+        //Grafico de ouviu
+        ObservableList<PieChart.Data> dataOuviu = FXCollections.observableArrayList(
             new PieChart.Data("Já ouviu", contsim),
             new PieChart.Data("Não ouviu", contnao)
         );
         
-        pieChartData.forEach(data ->
+        dataOuviu.forEach(data ->
             data.nameProperty().bind(
                 Bindings.concat(data.getName(), ": ", data.pieValueProperty())
             )
         );
 
-        estOuviu.setData(pieChartData);
+        estOuviu.setData(dataOuviu);
+        
+        //Grafico de Tipo
+        ObservableList<PieChart.Data> dataTipo = FXCollections.observableArrayList(
+            new PieChart.Data("CD", contcd),
+            new PieChart.Data("DVD", contdvd),
+            new PieChart.Data("VINIL", contvinil),
+            new PieChart.Data("Outros", contoutros)
+        );
+        
+        dataTipo.forEach(data ->
+            data.nameProperty().bind(
+                Bindings.concat(data.getName(), ": ", data.pieValueProperty())
+            )
+        );
+
+        estTipo.setData(dataTipo);
     }
 }

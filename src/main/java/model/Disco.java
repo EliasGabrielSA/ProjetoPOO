@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-/**
- *
- * @author lefoly
- */
 public class Disco {
     
     private int id;
@@ -96,10 +88,4 @@ public class Disco {
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
-
-    @Override
-    public String toString() {
-        return id + " | " + nome + " | " + ano + " | " + tipo + " | " + duracao + " | " + faixas + " | " + visualizou + " | " + imagem;
-    }
-        
 }

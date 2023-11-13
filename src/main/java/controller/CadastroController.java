@@ -1,17 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 import java.io.File;
-import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -23,11 +19,6 @@ import model.dao.DaoFactory;
 import model.dao.DiscoDaoJdbc;
 import start.colecaojavafx.App;
 
-/**
- * FXML Controller class
- *
- * @author biels
- */
 public class CadastroController implements Initializable {
 
     @FXML
@@ -55,9 +46,6 @@ public class CadastroController implements Initializable {
 
     private static Disco discoSelecionado;
     
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (discoSelecionado != null){
@@ -90,7 +78,7 @@ public class CadastroController implements Initializable {
     private void btnAdicionarOnAction(ActionEvent event) throws Exception {
         Disco disco = new Disco();
         disco.setNome(txtNome.getText());
-        disco.setTipo(txtTipo.getText());
+        disco.setTipo(txtTipo.getText().toUpperCase());
         disco.setFaixas(parseInt(txtQtd.getText()));
         disco.setAno(parseInt(txtAno.getText()));
         disco.setDuracao(parseInt(txtDuracao.getText()));
@@ -125,15 +113,24 @@ public class CadastroController implements Initializable {
     private void btnProcurarOnAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Selecione uma imagem");
-        fileChooser.setInitialDirectory(new File("C:\\"));
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPEG (*.jpeg)", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG (*.png)", "*png"), new FileChooser.ExtensionFilter("All images", "*jpg","*.png"));
+        fileChooser.setInitialDirectory(new File("./assets"));
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Todas imagens", "*jpg","*png", "*jpeg"),
+                new FileChooser.ExtensionFilter("PNG (*.png)", "*png"), 
+                new FileChooser.ExtensionFilter("JPEG (*.jpeg)", "*jpeg"),
+                new FileChooser.ExtensionFilter("JPG (*.jpg)", "*.jpg")
+        );
         File selectedFile = fileChooser.showOpenDialog(btnProcurar.getScene().getWindow());
         if(selectedFile != null){
             txtUrl.setText(selectedFile.getAbsolutePath());
             Image image = new Image(selectedFile.toURI().toString());
             imgCapa.setImage(image);
         }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION); 
+            alert.setTitle("Aviso");
+            alert.setHeaderText("");
+            alert.setContentText("Nenhuma imagem foi selecionada.");
+            alert.show();
             System.out.println("Nenhum arquivo foi selecionado");
         }
     }
