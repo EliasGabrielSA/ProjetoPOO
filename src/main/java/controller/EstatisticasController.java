@@ -36,7 +36,7 @@ public class EstatisticasController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        estOuviu.getData().clear(); // Limpe os dados antigos
+        estOuviu.getData().clear();
         estTipo.getData().clear();
         
         carregarLista("");
@@ -83,8 +83,6 @@ public class EstatisticasController implements Initializable {
             }
         }
         
-        
-        //Grafico de ouviu
         ObservableList<PieChart.Data> dataOuviu = FXCollections.observableArrayList(
             new PieChart.Data("Já ouviu", contsim),
             new PieChart.Data("Não ouviu", contnao)
@@ -98,7 +96,6 @@ public class EstatisticasController implements Initializable {
 
         estOuviu.setData(dataOuviu);
         
-        //Grafico de Tipo
         ObservableList<PieChart.Data> dataTipo = FXCollections.observableArrayList(
             new PieChart.Data("CD", contcd),
             new PieChart.Data("DVD", contdvd),

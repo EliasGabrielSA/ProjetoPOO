@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -170,14 +171,16 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void modalOnAction(ActionEvent event, Disco discoSelecionado) {
-        // Caminho da imagem do disco selecionado
-        if (discoSelecionado != null){
-            String caminhoImagem = discoSelecionado.getImagem().replace("\\", "/");
-            Image image = new Image("file:///" + caminhoImagem);
+        if (discoSelecionado != null) {
+            String caminhoImagem = discoSelecionado.getImagem().replace("\\", File.separator);
+
+            if (caminhoImagem.startsWith("." + File.separator)) {
+                caminhoImagem = System.getProperty("user.dir") + caminhoImagem.substring(1);
+            }
+
+            Image image = new Image("file:" + caminhoImagem);
             ImageViewModal.setImage(image);
 
-
-            // Atualização dos labels
             labelNome.setText(discoSelecionado.getNome());
             labelAno.setText("Ano: " + discoSelecionado.getAno());
             labelTipo.setText("Tipo: " + discoSelecionado.getTipo());

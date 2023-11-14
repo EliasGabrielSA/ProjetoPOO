@@ -3,6 +3,8 @@ package controller;
 import java.io.File;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,31 +50,36 @@ public class CadastroController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (discoSelecionado != null){
+        if (discoSelecionado != null) {
             txtNome.setText(discoSelecionado.getNome());
             txtTipo.setText(discoSelecionado.getTipo());
             txtQtd.setText(Integer.toString(discoSelecionado.getFaixas()));
             txtAno.setText(Integer.toString(discoSelecionado.getAno()));
             txtDuracao.setText(Integer.toString(discoSelecionado.getDuracao()));
             txtUrl.setText(discoSelecionado.getImagem());
-            
+
             if (discoSelecionado.getVisualizou().equals("Já ouviu")) {
                 checkBoxOuviu.setSelected(true);
             } else {
                 checkBoxOuviu.setSelected(false);
             }
-            
+
             if (txtUrl != null) {
-                Image image = new Image("file:///" + txtUrl.getText().replace("\\", "/"));
+                String caminhoImagem = txtUrl.getText().replace("\\", File.separator);
+
+                if (caminhoImagem.startsWith("." + File.separator)) {
+                    caminhoImagem = System.getProperty("user.dir") + caminhoImagem.substring(1);
+                }
+
+                Image image = new Image("file:" + caminhoImagem);
                 imgCapa.setImage(image);
             }
-            
+
             btnAdicionar.setText("Editar");
-            
-        } else{
+        } else {
             limparDados();
         }
-    }    
+    }
 
     @FXML
     private void btnAdicionarOnAction(ActionEvent event) throws Exception {
@@ -115,26 +122,40 @@ public class CadastroController implements Initializable {
         fileChooser.setTitle("Selecione uma imagem");
         fileChooser.setInitialDirectory(new File("./assets"));
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Todas imagens", "*jpg","*png", "*jpeg"),
-                new FileChooser.ExtensionFilter("PNG (*.png)", "*png"), 
+                new FileChooser.ExtensionFilter("Todas imagens", "*jpg", "*png", "*jpeg"),
+                new FileChooser.ExtensionFilter("PNG (*.png)", "*png"),
                 new FileChooser.ExtensionFilter("JPEG (*.jpeg)", "*jpeg"),
                 new FileChooser.ExtensionFilter("JPG (*.jpg)", "*.jpg")
         );
         File selectedFile = fileChooser.showOpenDialog(btnProcurar.getScene().getWindow());
-        if(selectedFile != null){
-            txtUrl.setText(selectedFile.getAbsolutePath());
-            Image image = new Image(selectedFile.toURI().toString());
+
+        if (selectedFile != null) {
+            String separator = File.separator;
+            String caminhoImagem = selectedFile.getAbsolutePath();
+            if (caminhoImagem.startsWith(System.getProperty("user.dir"))) {
+                caminhoImagem = "." + separator + caminhoImagem.substring(System.getProperty("user.dir").length() + 1);
+            }
+
+            txtUrl.setText(caminhoImagem);
+            Image image = new Image(new File(caminhoImagem).toURI().toString());
             imgCapa.setImage(image);
-        }else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION); 
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText("");
             alert.setContentText("Nenhuma imagem foi selecionada.");
             alert.show();
             System.out.println("Nenhum arquivo foi selecionado");
-        }
     }
-    
+}
+
+    private String getRelativePath(File file) {
+        Path currentPath = Paths.get("").toAbsolutePath();
+        Path absolutePath = file.toPath().toAbsolutePath();
+        Path relativePath = currentPath.relativize(absolutePath);
+        return relativePath.toString();
+    }   
+
     private void limparDados(){
         discoSelecionado = null;
         txtNome.setText("");
