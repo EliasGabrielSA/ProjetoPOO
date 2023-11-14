@@ -81,33 +81,42 @@ public class CadastroController implements Initializable {
         }
     }
 
+    
     @FXML
     private void btnAdicionarOnAction(ActionEvent event) throws Exception {
-        Disco disco = new Disco();
-        disco.setNome(txtNome.getText());
-        disco.setTipo(txtTipo.getText().toUpperCase());
-        disco.setFaixas(parseInt(txtQtd.getText()));
-        disco.setAno(parseInt(txtAno.getText()));
-        disco.setDuracao(parseInt(txtDuracao.getText()));
-        disco.setImagem(txtUrl.getText());
-        if(checkBoxOuviu.isSelected()){
-            disco.setVisualizou("Já ouviu");
-        } else{
-            disco.setVisualizou("Não ouviu");
+        try {
+            Disco disco = new Disco();
+            disco.setNome(txtNome.getText());
+            disco.setTipo(txtTipo.getText().toUpperCase());
+            disco.setFaixas(parseInt(txtQtd.getText()));
+            disco.setAno(parseInt(txtAno.getText()));
+            disco.setDuracao(parseInt(txtDuracao.getText()));
+            disco.setImagem(txtUrl.getText());
+            if(checkBoxOuviu.isSelected()){
+                disco.setVisualizou("Já ouviu");
+            } else{
+                disco.setVisualizou("Não ouviu");
+            }
+
+            DiscoDaoJdbc dao = DaoFactory.novoDiscoDao();
+
+            if (discoSelecionado == null){
+                dao.incluir(disco);
+            } else{
+                disco.setId(discoSelecionado.getId());
+                dao.editar(disco);
+                discoSelecionado = null;
+            }
+
+            App.setRoot("Principal");
+            limparDados();
+        } catch (NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Erro na entrada de dados");
+            alert.setContentText("Certifique-se de digitar valores inteiros para a quantidade, ano e duração.");
+            alert.showAndWait();
         }
-        
-        DiscoDaoJdbc dao = DaoFactory.novoDiscoDao();
-        
-        if (discoSelecionado == null){
-            dao.incluir(disco);
-        } else{
-            disco.setId(discoSelecionado.getId());
-            dao.editar(disco);
-            discoSelecionado = null;
-        }
-        
-        App.setRoot("Principal");
-        limparDados();
     }
 
     @FXML
